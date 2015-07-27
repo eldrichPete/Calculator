@@ -1,0 +1,172 @@
+<!-- 
+	Created By : Pete Eldrich Taruc 
+	BSIT - 4R4 (MUST)
+	Elective 2
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<!-- title of the page -->
+	<title>Calculator</title>
+	<!-- css import -->
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<!-- container of the calculator -->
+	<section id="container">
+		<!-- independent section inside the container placing center -->
+		<center>
+			<article>
+				<!-- output field of the calculator -->
+				<input disabled="" id="input" value="0" /><br><br>
+				<!-- buttons of the calculator , row by 4 -->
+				<ul class="row-buttons">
+					<li><button id="__7" onclick="getValue(this.value)" value="7">7</button></li>
+					<li><button id="__8" onclick="getValue(this.value)" value="8">8</button></li>
+					<li><button id="__9" onclick="getValue(this.value)" value="9">9</button></li>
+					<li><button id="divide" onclick="getValue(this.value)" value="division">/</button></li>
+				</ul>
+				<ul class="row-buttons">
+					<li><button id="__4" onclick="getValue(this.value)" value="4">4</button></li>
+					<li><button id="__5" onclick="getValue(this.value)" value="5">5</button></li>
+					<li><button id="__6" onclick="getValue(this.value)" value="6">6</button></li>
+					<li><button id="multiply" onclick="getValue(this.value)" value="multiplication">*</button></li>
+				</ul>
+				<ul class="row-buttons">
+					<li><button id="__3" onclick="getValue(this.value)" value="3">3</button></li>
+					<li><button id="__2" onclick="getValue(this.value)" value="2">2</button></li>
+					<li><button id="__1" onclick="getValue(this.value)" value="1">1</button></li>
+					<li><button id="minus" onclick="getValue(this.value)" value="subtraction">-</button></li>
+				</ul>
+				<ul class="row-buttons">
+					<li><button id="__0" onclick="getValue(this.value)" value="0">0</button></li>
+					<li><button id="." onclick="getValue(this.value)" value=".">.</button></li>
+					<li><button id="add" onclick="getValue(this.value)" value="addition">+</button></li>
+					<li><button id="equal" onclick="getValue(this.value)" value="equal">=</button></li>
+				</ul>
+				<ul class="row-buttons">
+					<li><button id="reset" onclick="getValue(this.value)" value="resetValue">C</button></li>
+				</ul>
+			</article>
+		</center>
+	</section>
+
+	<!-- main functions of the calculator ! -->
+	<!-- multiple clicking on the operator is not yet been fixed ! -->
+	<!-- parseFloat is not working properly . -->
+	<script>
+		var result;
+		i = 0;
+		input = '';
+		operator = '';
+		number = [];
+
+		function getValue(value)
+		{
+			if(value == 'multiplication' || value == 'division' || value == 'addition' || value == 'subtraction')
+			{
+				switch(value)
+				{
+					case 'multiplication' :
+						if(number.length == 2)
+							equal();
+						operator = document.getElementById('multiply').value;
+						input = '';
+						i++;
+						break;
+					case 'division' :
+						if(number.length == 2)
+							equal();
+						operator = document.getElementById('divide').value;
+						input = '';
+						i++;
+						break;
+					case 'addition' :
+						if(number.length == 2)
+							equal();
+						operator = document.getElementById('add').value;
+						i++;
+						input = '';
+						break;
+					case 'subtraction' :
+						if(number.length == 2)
+							equal();
+						operator = document.getElementById('minus').value;
+						i++;
+						input = '';
+						break;
+				}
+			}
+			else if(value == 'resetValue' || value == 'equal')
+			{
+				switch(value)
+				{
+					case 'resetValue' :
+						input = '';
+						i = 0;
+						number = [];
+						operator = '';
+						document.getElementById('input').value = '0';
+						break;
+					case 'equal' :
+						equal();
+						break;
+				}
+			}
+			else if(value == '.')
+			{
+				input += value;
+				document.getElementById('input').value = input;
+				number[i] = parseFloat(input);
+			}
+			else
+			{
+				input += value;
+				document.getElementById('input').value = input;
+				number[i] = parseInt(input);
+			}
+		}
+
+		function equal()
+		{
+			if(operator == 'multiplication')
+			{
+				result = 1;
+				for(x = 0 ; x < number.length ; x++)
+				{
+					result *= number[x];
+				}
+			}
+			else if(operator == 'division')
+			{
+				result = number[0];
+				for(x = 1 ; x < number.length ; x++)
+				{
+					result /= number[x];
+				}
+			}
+			else if(operator == 'addition')
+			{
+				result = 0;
+				for(x = 0 ; x < number.length ; x++)
+				{
+					result += number[x];
+				}
+			}
+			else if(operator == 'subtraction')
+			{
+				result = number[0];
+				for(x = 1 ; x < number.length ; x++)
+				{
+					result -= number[x];
+				}
+			}
+			document.getElementById('input').value = result;
+			i = 0;
+			number = [];
+			number[i] = result;
+		}
+	</script>
+	
+</html>
