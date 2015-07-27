@@ -1,0 +1,62 @@
+#container
+{
+	width: 400px;
+	height: 500px;
+	background-color: #2A1010;
+	position: relative;
+	left: 30%;
+	top: 50px;
+	padding: 0px;
+	margin: 0px;
+	border: 2px solid gray;
+}
+
+#input
+{
+	width: 310px;
+	height: 50px;
+	border: 0px;
+	position: relative;
+	top: 25px;
+	text-align: right;
+	color: black;
+	font-size: 30px;
+	border: 1px solid gray;
+}
+
+.row-buttons
+{
+	position: relative;
+	right: 5px;
+	top: 15px;
+}
+
+.row-buttons > li
+{
+	display: inline-block;
+}
+
+.row-buttons > li > button
+{
+	font-size: 15px;
+	font-weight: bolder;
+	color: white;
+	width: 55px;
+	height: 55px;
+	border: 0px;
+	background-color: gray;
+	margin-right: 25px;
+	border: 1px solid white;
+}
+
+.row-buttons > li > button:hover
+{
+	box-shadow: 2px 2px 2px black inset;
+}
+
+#reset
+{
+	background-color: #E64242;
+	position: relative;
+	right: 128px;
+}
